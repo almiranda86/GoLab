@@ -97,3 +97,34 @@ With:
 our package declaration
 our imports
 our function
+
+==================================================================================================================
+Go, is a Static Type Language.
+Which means that, once you create a variable, you need to define a type to it, and the type of the variable will be important.
+
+In Go, when we're creating a variable, we can do this way:
+var card string = "Ace of Spades"
+or
+card := "Ace of Spades"
+
+The second way, relies on Go compiler to figure out on what type of value we're trying to work with.
+
+So, this means that, we're creating a variable, named card.
+And, the string word, after the variable name, tells the compiler that this variable will accept only string values.
+
+==================================================================================================================
+In Go, when we create a function, we need to explicit the type of the function, when we define a return of any type.
+
+So, if we create a function like this:
+func newCard() {
+	return "Five of Diamonds"
+}
+
+Go will throw an error, saying that there's too many arguments to return. This happens because we don't informed the return type to the compiler.
+
+
+So, we need to write the function this way, and make the type of the function explicit:
+func newCard() string {
+	return "Five of Diamonds"
+}
+
