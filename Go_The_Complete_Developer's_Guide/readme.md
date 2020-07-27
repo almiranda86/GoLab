@@ -69,6 +69,7 @@ Basically, if we write 'package main', we are declaring that, the file will gene
 
 
 And, last but not least, when we write a package main, we'll need a function main, that will be executed automatically when the program runs.
+
 ==================================================================================================================
 Now, we're kind wondering that, the line 'import "fmt" ', will bring to our file some functionality that we'll need, in order to properly execute our code...
 And, we're right about this guessing!
