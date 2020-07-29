@@ -132,3 +132,62 @@ func newCard() string {
 	return "Five of Diamonds"
 }
 
+==================================================================================================================
+
+In Go, we have two types to work with list of data.
+
+The Array and The Slice.
+
+The Array, has a defined size, that it's immutable and the Slice no, it can grow or shrink at will. But, the Slice by definition, is an Array.
+
+Both Array and Slice must be defined with a data type. This way, if we create one of them of the type string, it only will accept strings. 
+
+So, in order to create a Slice, we could do in the following way:
+cards := []string{"Ace of Diamonds", newCard()}
+
+This way, we're saying that this Slice, is a Slice of string.
+
+And, in order to add values to it, we could do like this:
+cards = append(cards, "Six of Spades")
+
+This, will return to us a new state of the cards Slice.
+
+And, if we want to iterate through the Slice, we could use a for loop:
+
+for i, card := range cards {
+ fmt.Println(i, card)
+}
+
+Where 'i' is the index of the elements;
+The 'card' is the current object that we're iterating over;
+The 'range cards' indicates that we want to iterate through
+The 'fmt.Println(i, card)' is the action that we want to execute on each iteration
+
+The ':=' syntax works fine here, because for each iteration we're kind throwing out the old variable, and redeclaring it.
+
+Note: if we declare a variable like 'i', for the index, we must use it somewhere into the for loop, otherwise, it'll cause a compilation problem.
+In go, if you declare a variable, you need to use it.
+
+==================================================================================================================
+
+Go is not an OO language, but, it doesn't mean that you can't use this approach with it.
+
+In order to work more or less like and OO approach, we can create a custom type.
+
+For example, we can create a type for our Deck, which will still be a slice of string.
+
+This would be like this:
+type deck []string
+
+Here, we're saying that we're creating a new type, named 'deck', which is a slice of string
+
+And, we can go further, and create a function for our new type, to help the user to retrieve and print the values. This could be like this:
+func (d deck) print() {
+	for i, card := range d {
+		fmt.Println(i, card)
+	}
+}
+
+Where, 'd deck' is called Receiver, where the 'd' is the working variable, a reference to the type who called the function, and 'deck' is a reference of the type which we would attach this method to.
+
+By convention, the receiver should be called with one or two letters, like and abbreviation of the type, but, you're not forbidden to use a name you want.
