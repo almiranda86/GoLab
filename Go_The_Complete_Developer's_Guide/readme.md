@@ -71,6 +71,7 @@ Basically, if we write 'package main', we are declaring that, the file will gene
 And, last but not least, when we write a package main, we'll need a function main, that will be executed automatically when the program runs.
 
 ==================================================================================================================
+
 Now, we're kind wondering that, the line 'import "fmt" ', will bring to our file some functionality that we'll need, in order to properly execute our code...
 And, we're right about this guessing!
 
@@ -100,6 +101,7 @@ our imports
 our function
 
 ==================================================================================================================
+
 Go, is a Static Type Language.
 Which means that, once you create a variable, you need to define a type to it, and the type of the variable will be important.
 
@@ -114,6 +116,7 @@ So, this means that, we're creating a variable, named card.
 And, the string word, after the variable name, tells the compiler that this variable will accept only string values.
 
 ==================================================================================================================
+
 In Go, when we create a function, we need to explicit the type of the function, when we define a return of any type.
 
 So, if we create a function like this:
