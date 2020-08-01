@@ -119,7 +119,7 @@ and with this, you should see Hello there! printed.</p>
   
 
 <p>In Go, we have two types to work with list of data.</p>
-<p><b>The Array and The Slice.</p>
+<p><b>The Array and The Slice.</b></p>
 <p>The Array, has a defined size, that it's immutable and the Slice no, it can grow or shrink at will.</p><p>But, the Slice by definition, is an Array.</p>
 <p>Both Array and Slice must be defined with a data type. This way, if we create one of them of the type string, it only will accept strings.</p>
 <p>So, in order to create a Slice, we could do in the following way:
@@ -213,4 +213,4 @@ and with this, you should see Hello there! printed.</p>
 
     []byte("Hello there")
 
-***
+
