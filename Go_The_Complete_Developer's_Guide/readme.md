@@ -190,8 +190,9 @@ and with this, you should see Hello there! printed.</p>
 		    fmt.Println(i, card)
 	    }
     }
-<p>Where, 'd deck' is called Receiver, where the 'd' is the working variable, a reference to the type who called the function, and 'deck' is a reference of the type which we would attach this method to.</p>
+<p>Where, <b>d deck</b> is called Receiver, where the <b>d</b> is the working variable, a reference to the type who called the function, and <b>deck</b> is a reference of the type which we would attach this method to.</p>
 <p>By convention, the receiver should be called with one or two letters, like and abbreviation of the type, but, you're not forbidden to use a name you want.</p>
+<p>The receiver works more or less like an extension in C#, when we create a class, with custom methods to extend an object</p>
 <p>If we want, we could create a function that receive arguments to work with, and it should be like this:</p>
 
     func funcName(x type, y type){
@@ -215,3 +216,10 @@ and with this, you should see Hello there! printed.</p>
 
 
 ***
+<p>In order to create a Test in Go, we could create a new file, for exemple deck.go, but, we must name this Test file with a _test, so this way, Go will automatically see this Test file.</p>
+<p>This way, our teste file should be named as deck_test.go</p>
+<p>And, in order to create a new test function, we should do like this:</p>
+
+    func TestNameFunction(t *testing.T)
+    
+<p>With the name Test, the compiler will recognize this as test function, and another important thing, is that we need usa a capital letter after the Test, otherwise, we'll have a compilation problem, of malformed name.</p>
