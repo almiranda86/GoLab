@@ -471,3 +471,44 @@ func main() {
 	}
 
 <p>Go will understand that our variable, of the type person, is able to call a function, which has a pointer receiver of the same type, in thi case, type person</p>
+
+***
+
+<p>Go has an object, called map, which works as a C# dictionary.</p>
+<p>When we create a map, we need to do this with a key and a value, and, all the keys and all the values must be of this value.</p>
+<p>So, for example, if we want to declare a map, we could do this way:</p>
+
+	colors := map[string]string{
+		"red": "#ff00000",
+		"green": "#008000",
+	}
+
+<p>Here, we have a map which has as keys the name of the colors, as strings, and as values, their respective hex decimal as string as well</p>
+<p>But, what is more common is that we usually don't know beforehand what will be the values.</p>
+<p>So how we could create a map this way?</p>
+<p>Well, Go has other two ways of create a map:</p>
+
+	var colors map[string]string
+	colors := make(map[string]string)
+
+<p>With this two ways, we'll create a map, with no values inside.</p>
+<p>And, if we create a map like this, empty... we can add a value into it, doing this:</p>
+
+	colors["white"] = "#ffffff"
+
+<p>When we want to access a value inside our map, we need to access through the key name:</p>
+
+	fmt.Println(colors["white"])
+	> #ffffff
+
+<p>And, if we want to delete a value of the map, we could use a built-in function, called delete, informing the map and what key we want to delete:</p>
+
+	delete(colors, "white")
+
+<p>If we want to iterate through a map, we could do like this:</p>
+
+	func printMap(m map[string]string) {
+		for key, val := range m {
+
+		}	
+	}
