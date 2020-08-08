@@ -223,3 +223,251 @@ and with this, you should see Hello there! printed.</p>
     func TestNameFunction(t *testing.T)
     
 <p>With the name Test, the compiler will recognize this as test function, and another important thing, is that we need usa a capital letter after the Test, otherwise, we'll have a compilation problem, of malformed name.</p>
+
+***
+
+<p>With Go, we can work with a type know as struct.</p>
+<p>Struct are collections of fields</p>
+<p>We can create a struct, this way:</p>
+
+    type person struct {
+        firstName string
+        lastName string
+    }
+
+<p>And, we can inform the values to it, in many ways.</p>
+<p>One of them is this:</p>
+
+    func main() {
+	    person := person{"Andre", "Miranda"}
+    }
+
+<p>This way, Go will infer that the first value is related to the first property, and the second value, to the second property.</p>
+<p>But,it could be a problem because, we'll always need to inform the values in the right order, and double our attention when creating our struct.</p>
+<p>For example, if this happens:</p>
+
+    func main() {
+	    person := person{"Miranda", "Andre"}
+    }
+
+<p>the values will be changed, same way if we do this:</p>
+
+    type person struct {
+	    lastName string
+	    firstName string
+    }
+    
+    func main() {
+	    person := person{"Andre", "Miranda"}
+    }
+
+<p>But, we can inform the values in another way, a way where the order of the values or properties doesn't matter.</p>
+<p>This would be like this:</p>
+
+    person := person{firstName: "Andre", lastName: "Miranda"}
+
+<p>This way, no matter the order, we're informing which property we want to fill with the respective value.</p>
+<p>And, there's another way that we can initialize a strut.</p>
+<p>We could do like this:</p>
+
+    func main() {
+	    var p person
+    }
+
+<p>This way, Go will initialize the properties inside of the struct with the base value for each type that exists inside of it.</p>
+<p>And, doing this way, if we want to fill the properties, we can do this way:</p>
+
+    func main() {
+	    var p person
+	    p.firstName = "Andre"
+	    p.lastName = "Miranda"
+    }
+
+<p>We could also, create another struct if we want or need, and embed this second struct inside this fisrt struct.</p>
+<p>If we do this, it could be like this:</p>
+
+    type contactInfo struct {
+	    email string
+	    zipCode int
+    }
+    
+    type person struct {
+	    firstName string
+	    lastName string
+	    contact contactInfo
+    }
+
+<p>And, for initialize it, we could do like this:</p>
+
+func main() {
+
+    person := person{
+	    firstName: "Andre",
+	    lastName: "Miranda",
+	    contact: contactInfo{
+		    email: "myemail@email.com",
+		    zipCode: 000000,
+		    },
+	    }
+    }
+
+<p>or like this:</p>
+
+    func main() {
+	    var p person
+	    p.firstName = "Andre"
+	    p.lastName = "Miranda"
+	    p.contact.email = "myemail@email.com"
+	    p.contact.zipCode = 000000
+    }
+
+<p>And, in cases when we have structs embedded, we can suppress the name for the type.</p>
+<p>For example:</p>
+
+    type contactInfo struct {
+	    email string
+	    zipCode int
+    }
+    
+    type person struct {
+	    firstName string
+	    lastName string
+	    contactInfo
+    }
+
+<p>This way, Go will infer that we have a property named contactInfo inside our person struct, that is of the type contactInfo.</p>
+<p>And, if we do this way, in order to fill the information, we must do like this:</p>
+
+    func main() {
+	    person := person{
+	    firstName: "Andre",
+	    lastName: "Miranda",
+	    contactInfo: contactInfo{
+		    email: "myemail@email.com",
+		    zipCode: 000000,
+		    },
+	    }
+    }
+
+<p>or like this:</p>
+
+    func main() {
+	    var p person
+	    p.firstName = "Andre"
+	    p.lastName = "Miranda"
+	    p.contactInfo.email = "myemail@email.com"
+	    p.contactInfo.zipCode = 000000
+    }
+
+***
+<p>As Go work with structs, when we want to manipulate it's value, we need to access it first.</p>
+<p>So, this way, if we do something like this:</p>
+
+    func main() {
+	    var p person
+	    p.firstName = "Andre"
+	    p.lastName = "Miranda"
+	    p.contactInfo.email = "myemail@email.com"
+	    p.contactInfo.zipCode = 000000
+	    p.updateName("Adao")
+	    p.print()
+    }
+
+    func (p person) updateName(newFirstName string) {
+	    p.firstName = newFirstName
+    }
+
+    func (p person) print() {
+	    fmt.Printf("%+v", p)
+    }
+<p>We won't see any change, because when we do this, Go fist write the person struct in a place into the memory.</p>
+<p>Then, when asked to do the update, Go will do this, but, it will place the new value, in a new memory place.</p>
+<p>This way, we'll never see the changes.</p>
+<p>So, as said before, if we want to change, and see it happens, we need to work with pointers.</p>
+<p>Pointers that work mostly like pointers in C or C++</p>
+<p>So in order to create a pointer, we could do this way:</p>
+
+    func main() {
+	    var p person
+	    p.firstName = "Andre"
+	    p.lastName = "Miranda"
+	    p.contactInfo.email = "myemail@email.com"
+	    p.contactInfo.zipCode = 000000
+	    pPointer := &p
+	    pPointer.updateName("Adao")
+	    p.print()
+    }
+
+	func (pointerToPerson *person) updateName(newFirstName string) {
+		(*pointerToPerson).firstName = newFirstName
+	}
+
+	func (p person) print() {
+		fmt.Printf("%+v", p)
+	}
+
+<p>Here, we notice two things:</p>
+<p><b>pPointer := &p</b></p>
+<p><b>pPointer.updateName("Name")</b></p>
+
+	func (pointerToPerson *person) updateName(newFirstName string) {
+		(*pointerToPerson).firstName = newFirstName
+	}
+
+<p>So, a bit of explanation...</p>
+<p><b>pPointer := &variable => this means, give me access to the memory address of this variable
+*pPointer => this means, give me the value of this memory address</b></p>
+
+<p>As for the function, the definition of it changed a bit, but it still make sense:</p>
+<p>func (pointerToPerson *person) updateName(newFirstName string)</p>
+<p>Here, with this function, we're saying that this updateName, could only be called by a pointer, of the type person.</p>
+<p>So, when we did this:</p>
+
+	pPointer := &p
+
+<p>We created a pointer, with the person type...</p>
+<p>and when we did this:</p>
+
+	pPointer.updateName("Name")
+
+<p>we were saying that a pointer of the type person was calling the updateName function</p>
+<p>and when this is executed:</p>
+
+	func (pointerToPerson *person) updateName(newFirstName string) {
+		(*pointerToPerson).firstName = newFirstName
+	}
+
+<p>we are now receiving kind a reference to the person, inside our function: </p>
+<p><b>pointerToPerson *person</b></p>
+<p>and, with this, we are now able to access it's value:</p>
+
+	(*pointerToPerson) == var p person
+
+<p>and with all this, this line:</p>
+	
+	(*pointerToPerson).firstName = newFirstName
+
+<p>became something like this in memory:</p>
+
+	p.firstName.firstName = newFirstName
+
+<p>We can say that:</p>
+<p>If you have a memory address, and you want to turn it into a value, you can do this with *memoryAddress</p>
+
+	(*pointerToPerson).firstName = newFirstName
+
+<p>If you have a value, and you want to turn it into a memoryAddress, you can do this with &value</p>
+
+	pPointer := &p
+
+<p>And, Go can also do some inference about our call.</p>
+<p>What I mean by this?</p>
+<p>Well, I mean that if we do this way:</p>
+
+	p.updateName("Adao")
+
+	func (pointerToPerson *person) updateName(newFirstName string) {
+		(*pointerToPerson).firstName = newFirstName
+	}
+
+<p>Go will understand that our variable, of the type person, is able to call a function, which has a pointer receiver of the same type, in thi case, type person</p>
